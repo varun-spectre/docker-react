@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true zoro/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'dockerCourse'
+  env: 'DockerCourse-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-226375241842'
+  bucket_path: 'dockerCourse'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  access_secret_key: '$AWS_SECRET_KEY'
